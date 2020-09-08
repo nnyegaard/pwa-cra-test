@@ -1,26 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import QrReader from "react-qr-reader";
 
 function App() {
+  const ref: React.RefObject<any> = React.createRef();
+
+  const [value, setValue] = useState("empty");
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-      </header>
-
+      QR reader
       <QrReader
         delay={300}
-        onError={(err) => console.log(err)}
-        onScan={(data) => console.log(data)}
-        onImageLoad={(data) => console.log(data)}
-        style={{ width: "100%" }}
-        legacyMode={true}
+        onError={(err) => <div>{err}</div>}
+        onScan={(data) => setValue(data ?? "null value returned")}
+        onImageLoad={(data) => <div>{data}</div>}
+        legacyMode={false}
       />
+      {/* <input width="200px" height="200px" type="button" value="Submit QR Code" onClick={() => ref.qrReader1.openImageDialog()} /> */}
+      <div>Value is: {value}</div>
     </div>
   );
 }
