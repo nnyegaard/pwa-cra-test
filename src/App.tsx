@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import QrReader from "react-qr-reader";
 
-function App() {
-  const ref: React.RefObject<any> = React.createRef();
+function App() {;
 
   const [value, setValue] = useState("empty");
 
